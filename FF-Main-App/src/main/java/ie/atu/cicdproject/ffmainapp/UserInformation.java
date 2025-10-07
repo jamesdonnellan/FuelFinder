@@ -1,7 +1,6 @@
 package ie.atu.cicdproject.ffmainapp;
 
-public class FuelStationController
+public class UserInformation
 {
-
 
 }
