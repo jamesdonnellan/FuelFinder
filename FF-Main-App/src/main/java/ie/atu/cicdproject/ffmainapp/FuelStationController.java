@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RequestMapping({"/FuelStationInformation", "/UserInformation", "/api/stations"})
+@RequestMapping({"/FuelStationInformation", "/UserInformation", })
 @RestController
 public class FuelStationController
 {
@@ -26,7 +26,7 @@ public class FuelStationController
     @GetMapping("/getFuelStations")
     public List<FuelStationInformation> getFuelStations()
     {
-        FuelStationInformation myFuelStationInformation = new FuelStationInformation("TV", 499);
+        FuelStationInformation myFuelStationInformation = new FuelStationInformation("CircleK", 1.71, 1.67, "Galway");
         return myList;
     }
     //with @PostMapping you can add to the other Mappings

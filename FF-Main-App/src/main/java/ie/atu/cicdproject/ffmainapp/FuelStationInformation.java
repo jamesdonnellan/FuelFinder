@@ -10,9 +10,10 @@ import lombok.Data;
 public class FuelStationInformation {
 
     private String stationName;
-    private String location;
     private double petrolPrice;
     private double dieselPrice;
+    private String location;
+
 
 
 }
