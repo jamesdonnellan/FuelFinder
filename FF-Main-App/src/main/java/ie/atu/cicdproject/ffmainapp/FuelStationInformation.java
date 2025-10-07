@@ -1,4 +1,3 @@
-
 package ie.atu.cicdproject.ffmainapp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +9,10 @@ import lombok.Data;
 
 public class FuelStationInformation {
 
-    private String productName;
-    private double price;
+    private String stationName;
+    private String location;
+    private double petrolPrice;
+    private double dieselPrice;
 
 
 }
