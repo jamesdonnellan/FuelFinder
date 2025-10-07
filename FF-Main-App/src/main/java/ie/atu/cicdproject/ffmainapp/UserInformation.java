@@ -1,5 +1,5 @@
 package ie.atu.cicdproject.ffmainapp;
-
+// Test JD
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
