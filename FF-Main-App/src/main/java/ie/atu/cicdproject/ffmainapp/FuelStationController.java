@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/FuelStationInformation")
+@RequestMapping({"/FuelStationInformation", "/UserInformation"})
 @RestController
 public class FuelStationController {
 
@@ -14,4 +14,4 @@ public class FuelStationController {
         return "hello";
     }
 
-}
+} // JD Test comment
