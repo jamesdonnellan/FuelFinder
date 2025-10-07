@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@RequestMapping({"/FuelStationInformation", "/UserInformation"})
 @RestController
 @RequestMapping("/api/stations")
 public class FuelStationController {
@@ -37,3 +38,4 @@ public class FuelStationController {
     }
 }
 //@Valid checks for errors
+} // JD Test comment
