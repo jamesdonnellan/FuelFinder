@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RequestMapping({"/FuelStationInformation", "/UserInformation"})
+@RequestMapping({"/FuelStationInformation", "/UserInformation", "/api/stations"})
 @RestController
-@RequestMapping("/api/stations")
-public class FuelStationController {
+public class FuelStationController
+{
 
     List<FuelStationInformation> myList = new ArrayList<>();
 
@@ -38,4 +38,4 @@ public class FuelStationController {
     }
 }
 //@Valid checks for errors
-} // JD Test comment
+// JD Test comment
