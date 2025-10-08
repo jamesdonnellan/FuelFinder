@@ -13,7 +13,7 @@ import java.util.List;
 public class FuelStationController
 {
 
-    List<FuelStationInformation> myList = new ArrayList<>();
+     List<FuelStationInformation> myList = new ArrayList<>();
 
     //So this would be /products/count
 
