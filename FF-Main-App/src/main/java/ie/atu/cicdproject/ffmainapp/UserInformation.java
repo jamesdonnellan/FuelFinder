@@ -1,7 +1,6 @@
 package ie.atu.cicdproject.ffmainapp;
-// Test JD
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,5 +9,12 @@ import lombok.Data;
 public class UserInformation
 {
     @NotBlank // Ensures that the fields cannot be left blank
-    private String userName, email, phone, userID;
+    private String userName;
+
+    @Email(message = "Invalid email format") //optional message that will display later on
+    private String email;
+
+    @Size(min = 6, message = "Password must contain 6 characters") //optional message that will display later on
+    private String password;
+
 }
