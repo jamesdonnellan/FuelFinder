@@ -8,7 +8,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserInformation
 {
-    @NotBlank // Ensures that the fields cannot be left blank
+    @NotBlank @Size(min=40)
+    private String userID;
+
+    @NotBlank @Size (max=60)// Ensures that the fields cannot be left blank
     private String userName;
 
     @Email(message = "Invalid email format") //optional message that will display later on
