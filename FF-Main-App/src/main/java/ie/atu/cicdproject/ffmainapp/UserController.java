@@ -1,5 +1,6 @@
 package ie.atu.cicdproject.ffmainapp;
 
+import ie.atu.cicdproject.ffmainapp.Services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
