@@ -1,7 +1,7 @@
 package ie.atu.cicdproject.ffmainapp.Services;
 
 
-import ie.atu.cicdproject.ffmainapp.UserInformation;
+import ie.atu.cicdproject.ffmainapp.Model.UserInformation;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

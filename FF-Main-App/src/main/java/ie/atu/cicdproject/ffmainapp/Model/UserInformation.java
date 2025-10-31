@@ -1,4 +1,4 @@
-package ie.atu.cicdproject.ffmainapp;
+package ie.atu.cicdproject.ffmainapp.Model;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
