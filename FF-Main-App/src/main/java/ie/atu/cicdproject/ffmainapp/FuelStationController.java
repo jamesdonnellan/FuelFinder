@@ -1,41 +1,42 @@
 package ie.atu.cicdproject.ffmainapp;
 
-
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-
-@RequestMapping({"/FuelStationInformation", "/UserInformation", })
 @RestController
-public class FuelStationController
-{
+@RequestMapping("/api/stations")
+public class FuelStationController {
 
-     List<FuelStationInformation> myList = new ArrayList<>();
+    private List<FuelStationInformation> stations = new ArrayList<>();
 
-    //So this would be /products/count
+    // Add a new fuel station
+    @PostMapping("/add")
+    public FuelStationInformation addStation(@Valid @RequestBody FuelStationInformation station) {
+        stations.add(station);
+        return station;
+    }
 
+    // Get all stations
+    @GetMapping("/getAll")
+    public List<FuelStationInformation> getAllStations() {
+        return stations;
+    }
+
+    // Search stations by location (e.g. "Galway City")
+    @GetMapping("/search")
+    public List<FuelStationInformation> searchByLocation(@RequestParam String location) {
+        return stations.stream()
+                .filter(s -> s.getLocation().equalsIgnoreCase(location))
+                .collect(Collectors.toList());
+    }
+
+    // Count total stations
     @GetMapping("/count")
-    public int countProducts() {
-        return myList.size();
-    }
-
-
-    @GetMapping("/getFuelStations")
-    public List<FuelStationInformation> getFuelStations()
-    {
-        FuelStationInformation myFuelStationInformation = new FuelStationInformation("CircleK", 1.71, 1.67, "Galway");
-        return myList;
-    }
-    //with @PostMapping you can add to the other Mappings
-    @PostMapping("/addFuelStationInformation")
-    public FuelStationInformation addProduct(@Valid @RequestBody FuelStationInformation myFuelStationInformation)
-    {
-        myList.add(myFuelStationInformation);
-        return myFuelStationInformation;
+    public int countStations() {
+        return stations.size();
     }
 }
-//@Valid checks for errors
-// JD Test comment
