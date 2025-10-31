@@ -40,7 +40,7 @@ public class UserService
         return user;
     }
 
-    public UserInformation update(String id, UserInformation updated)
+    public Optional <UserInformation> update(String id, UserInformation updated)
     {
         for (UserInformation user : store)
         {
