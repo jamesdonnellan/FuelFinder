@@ -1,13 +1,13 @@
 package ie.atu.cicdproject.ffmainapp;
 
 import ie.atu.cicdproject.ffmainapp.Services.UserService;
+import ie.atu.cicdproject.ffmainapp.UserInformation;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,23 +15,23 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController
 {
-    private List<UserInformation> users = new ArrayList<>();
+    private final UserService uService;
 
-    public UserController(UserService service)
+    public UserController(UserService uService)
     {
-        this.service = service;
+        this.uService = uService;
     }
 
     @GetMapping // Gets all Users Information
     public ResponseEntity<List<UserInformation>> findAll()
     {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(uService.findAll());
     }
 
     @GetMapping("/{id}") // Gets one user by their ID
     public ResponseEntity<UserInformation> getOne(@PathVariable String id)
     {
-        Optional<UserInformation> maybe = service.findById(id);
+        Optional<UserInformation> maybe = uService.findById(id);
         if(maybe.isPresent())
         {
             return ResponseEntity.ok(maybe.get());
@@ -45,38 +45,24 @@ public class UserController
     @PostMapping // Updated Method for create user
     public ResponseEntity<UserInformation> create(@Valid @RequestBody UserInformation user)
     {
-        UserInformation created = service.create(user);
+        UserInformation created = uService.create(user);
         return ResponseEntity
-                .created(URI.create("/api/passengers" + created.getUserID()))
+                .created(URI.create("/api/users" + created.getUserID()))
                 .body(created);
     }
 
     @PutMapping("/{id}") // New method for updating user data
     public ResponseEntity<UserInformation> update(@PathVariable String id, @Valid @RequestBody UserInformation updated)
     {
-        Optional<UserInformation> maybe = service.update(id, updated);
+        Optional<UserInformation> maybe = uService.update(id, updated);
         return maybe.map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.notFound().build());
+                    .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    //list all users
-    @GetMapping("/getUsers")
-    public List<UserInformation> getUsers() {
-        return users;
-    }
-    //Register new user
-    @PostMapping("/register")
-    public UserInformation registerUser(@Valid @RequestBody UserInformation user)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id)
     {
-        users.add(user);
-        return user;
+        boolean removed = uService.deleteById(id);
+        return removed ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
-
-    //Count registered users
-    @GetMapping("/count")
-    public int getUserCount()
-    {
-        return users.size();
-    }
-
 }
