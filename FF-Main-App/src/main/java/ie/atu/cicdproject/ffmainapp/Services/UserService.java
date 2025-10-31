@@ -2,7 +2,6 @@ package ie.atu.cicdproject.ffmainapp.Services;
 
 
 import ie.atu.cicdproject.ffmainapp.UserInformation;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,5 +38,25 @@ public class UserService
         }
         store.add(user);
         return user;
+    }
+
+    public UserInformation update(String id, UserInformation updated)
+    {
+        for (UserInformation user : store)
+        {
+            if (user.getUserID().equals(id))
+            {
+                user.setUserName(updated.getUserName());
+                user.setPassword(updated.getPassword());
+                user.setEmail(updated.getEmail());
+                return Optional.of(user);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public boolean deleteById(String id)
+    {
+        return store.removeIf(user -> user.getUserID().equals(id));
     }
 }
